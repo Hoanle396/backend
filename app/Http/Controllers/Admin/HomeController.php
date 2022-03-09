@@ -45,7 +45,7 @@ class HomeController extends Controller
                 'totalorder'=>OrderDetail::all()->count(),
                 'totalproduct'=>Product::all()->count(),
                 'totalservice'=>Service::all()->count(),
-                'totalfeedback'=>FeedBack::all()->count()
+                'totalfeedback'=>Feedback::all()->count()
             ];
             $feedback= Feedback::orderByDesc('id')->paginate(5);
             $order_= view('admin.index')->with('order',$order)->with('total',$thongke)->with('feedback',$feedback);
