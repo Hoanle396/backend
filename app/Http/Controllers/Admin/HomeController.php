@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Service;
-use App\Models\FeedBack;
+use App\Models\Feedback;
 
 class HomeController extends Controller
 {
@@ -45,8 +45,7 @@ class HomeController extends Controller
                 'totalorder'=>OrderDetail::all()->count(),
                 'totalproduct'=>Product::all()->count(),
                 'totalservice'=>Service::all()->count(),
-                'totalfeedback'=>4
-                //Feedback::all()->count()
+                'totalfeedback'=>Feedback::all()->count()
             ];
             $feedback= Feedback::orderByDesc('id')->paginate(5);
             $order_= view('admin.index')->with('order',$order)->with('total',$thongke)->with('feedback',$feedback);

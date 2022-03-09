@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\FeedBack;
+use App\Models\Feedback;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -17,7 +17,7 @@ class FeedbackController extends Controller
      */
     public function index()
     {
-        $feedback = FeedBack::paginate(8);
+        $feedback = Feedback::paginate(8);
         $feedbacks= view('feedback.index')->with('feedback',$feedback);
         return view('admin_layout')->with('feedback.index',$feedbacks);
     }
@@ -40,7 +40,7 @@ class FeedbackController extends Controller
      */
     public function store(Request $request)
     {
-        $feedback= new FeedBack();
+        $feedback= new Feedback();
         $feedback->fill($request->all());
         $feedback->save();
         return response()->json(['message'=>'Đã Phản Hồi Thành công']);
@@ -90,9 +90,9 @@ class FeedbackController extends Controller
     {
         if(Session::get("admin_name")) {
 
-            $feedback= FeedBack::where('id', $id)->get()->first();
+            $feedback= Feedback::where('id', $id)->get()->first();
             if($feedback){
-                $result = FeedBack::where('id', $id)->delete();
+                $result = Feedback::where('id', $id)->delete();
                 if ($result) {
                     Session::put('message', 'Đã xóa ');
                     return Redirect::back();
