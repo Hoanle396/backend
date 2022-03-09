@@ -132,7 +132,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         if (Session::get("admin_name")) {
-            $product = product::where('product_id', $id)->delete();
+            $product = Product::where('product_id', $id)->delete();
             if ($product) {
                 Session::put('message', 'Đã xóa sản phẩm');
                 return Redirect::back();
