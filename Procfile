@@ -1,1 +1,1 @@
-web: php artisan serve --port=$PORT
+web: vendor/bin/heroku-php-apache2 public/
